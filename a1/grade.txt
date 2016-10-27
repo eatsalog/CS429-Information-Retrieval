@@ -1,0 +1,27 @@
+Grade: 45.00/50.00
+
+1 Deduction(s):
+
+--------------
+#1: 5.00 points
+Failing test: test_create_tfidf_index_harder: 
+        Make sure that you compute (1 + log10(tf)) * math.log10(N/df).
+        @points=5
+        
+Traceback (most recent call last):
+  File "assignments-sol/a1/a1_test.py", line 52, in test_create_tfidf_index_harder
+    self.assertAlmostEqual(idx['a'][0][1], 0.392, 3)
+AssertionError: 0.6020599913279623 != 0.392 within 3 places
+
+source:
+    def test_create_tfidf_index_harder(self):
+         """
+         Make sure that you compute (1 + log10(tf)) * math.log10(N/df).
+         @points=5
+         """
+         idx = self.index.create_tfidf_index([['a', 'b', 'a'], ['c']], {'a': 1., 'b': 1., 'c': 1.})
+         self.assertListEqual(sorted(idx.keys()), ['a', 'b', 'c'])
+         self.assertEqual(idx['a'][0][0], 0)
+         self.assertAlmostEqual(idx['a'][0][1], 0.392, 3)
+--------------
+
